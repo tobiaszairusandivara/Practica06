@@ -1,0 +1,286 @@
+.navbar {
+    background-color: #000000;
+    min-height: 60px;
+    height: 80px;
+}
+
+.navbar-dark {
+    background-color: #000000;
+}
+
+.bg-secondary {
+    --bs-bg-opacity: 1;
+    background-color: rgb(0, 0, 0) !important;
+}
+
+.navbar-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+    pointer-events: none;
+}
+
+.brand-name {
+    font-size: 2rem;
+    font-weight: normal;
+    text-align: center;
+    color: white;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-link {
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.icon-link > .bi {
+    flex-shrink: 0;
+    size: 1em;
+    width: 1em;
+    height: 1.6em;
+    fill: currentcolor;
+    transition: .2s ease-in-out transform;
+}
+
+.icon-link:hover {
+    color: #ffcc00;
+}
+
+.nav-link {
+    color: white !important;
+    font-size: 1rem;
+    margin: 0 10px;
+}
+
+.nav-link:hover {
+    color: #ffcc00 !important;
+    text-decoration: none;
+}
+
+.nav-item i {
+    font-size: 1.3rem;
+    color: white;
+}
+
+.nav-item i:hover {
+    color: #ffcc00;
+}
+
+.nav-link.active {
+    color: #ffcc00 !important;
+    text-decoration: none;
+}
+
+.nav-link:visited {
+    color: white !important;
+}
+
+.nav-link:focus, .nav-link:active {
+    color: #ffcc00 !important;
+    outline: none;
+}
+
+.sidebar {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    height: 100vh;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    padding-top: 20px;
+    transition: left 0.3s;
+}
+
+.sidebar.show {
+    left: 0;
+    display: flex;
+}
+
+.sidebar .user-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar .user-info i {
+    font-size: 50px;
+    color: white;
+}
+
+.sidebar .auth-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+
+.hamburger {
+    font-size: 1.7rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.hamburger:hover {
+    opacity: 0.8;
+    color: #ffcc00;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+}
+
+#signup-form {
+    max-width: 500px;
+}
+
+form {
+    margin-bottom: 100px; /* Ajustar el valor  */
+   
+}
+
+
+
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+}
+
+.socials li{
+    margin: 0 10px;
+}
+
+.socials a {
+    display: inline-block; 
+    width: 50px; 
+    height: 50px; 
+    text-decoration: none;
+    color: #fff;
+    border: 1.1px solid white;
+    padding: 10px; 
+    border-radius: 50%; 
+    text-align: center; 
+}
+
+.socials a i{
+    font-size: 1.1rem;
+    width: 20px;
+    transition: color .4s ease;
+}
+
+.socials a:hover i{
+    color: yellow;
+}
+
+
+footer {
+    position: relative; /* O 'fixed' si deseas que se mantenga visible en todo momento */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: auto;
+    width: 100vw;
+    padding-top: 40px;
+    color: #fff;
+    z-index: 100; /* Asegura que esté encima de otros elementos si es necesario */
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer-content h3 {
+    font-size: 2.1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: 3rem;
+}
+
+.footer-content p {
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 14px;
+    color: #cacdd2;
+}
+
+.footer-bottom{
+    background: #000;
+    width: 100vw;
+    padding: 20px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+.footer-bottom p{
+    float: left;
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+   
+}
+ .footer-bottom p a{
+   color:yellow;
+   font-size: 16px;
+   text-decoration: none;
+ 
+}
+ .footer-bottom span{
+     text-transform: uppercase;
+     opacity: .4;
+     font-weight: 200;
+}
+
+
+
+
+html, body {
+    height: 100%; /* Asegura que el body ocupa todo el alto de la ventana */
+    margin: 0; /* Elimina márgenes por defecto */
+}
+
+body {
+    display: flex; /* Usa flexbox para alinear el contenido */
+    flex-direction: column; /* Alinea el contenido en columna */
+    overflow-x: hidden; /* Desactiva el desplazamiento horizontal */
+}
+
+main {
+    flex: 1; /* Permite que el contenedor principal crezca para ocupar espacio disponible */
+    display: flex; /* Flexbox en el contenedor principal */
+    flex-direction: column; /* Alinea su contenido en columna */
+    justify-content: flex-start; /* Cambia a flex-start para evitar centrar el contenido */
+    min-height: calc(100vh - 80px - 100px); /* Ajusta según la altura del navbar y el margen del formulario */
+}

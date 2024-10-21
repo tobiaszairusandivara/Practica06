@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caso práctico</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Iconos de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Archivo CSS personalizado -->
+  <link href="/CSS/style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Primer navbar con el logo y nombre de la marca grande -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button id="menu-toggle" class="hamburger">
+            <i class="bi bi-list"></i> 
+          </button>
+      <div class="navbar-brand brand-name" href="#">
+        <span class="user-select-none" id="brand-name">Bienvenido</span>
+      </div>
+      <div class="icons">
+        <a href="#perfil" class="icon-link"><i class="bi bi-person"></i></a>
+        <a href="#busqueda" class="icon-link"><i class="bi bi-search"></i></a>
+      </div>
+    </div>
+</nav>
+
+
+<!-- Segunda barra de navegación con las opciones -->
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="showForm('turnos')">Turnos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="showForm('servicios')">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="showForm('comentarios')">Comentarios</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Sidebar -->
+<div id="sidebar" class="d-flex flex-column sidebar">
+  <div class="user-info">
+    <i class="bi bi-person-circle"></i>
+    <p id="login-status"></p>
+    <div id="auth-buttons" class="auth-buttons">
+      <button id="login-btn" class="btn btn-outline-light btn-sm">Login</button>
+      <button id="signup-btn" class="btn btn-outline-light btn-sm">Sign Up</button>
+    </div>
+  </div>
+  <div>
+    <a href="index.html">Inicio</a>
+    <a href="#perfil">Perfil</a>
+    <a href="#configuraciones">Configuraciones</a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Acerca De</a>
+  </div>
+</div>
+
+
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Dashboard</h1>
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Estadísticas de Ventas</h5>
+          <canvas id="ventasChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Estadísticas Generales (FICTICIO)</h5>
+          <ul>
+            <li>Total de Servicios: <span id="total-servicios">50</span></li>
+            <li>Total de Turnos: <span id="total-turnos">120</span></li>
+            <li>Ingresos Totales: <span id="ingresos-totales">$30,000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjetas de Servicios y Turnos -->
+  <div class="row">
+    <!-- Tarjeta de Servicios -->
+    <div class="col-md-6 mb-4">
+      <div class="card card-flip servicios">
+        <div class="card-front">
+          <div class="card-body text-center">
+            <h5 class="card-title">Servicios</h5>
+            <p class="card-text">Gestiona tus servicios</p>
+            <button class="btn btn-primary" onclick="flipCard('servicios')">Ver más</button>
+          </div>
+        </div>
+        <div class="card-back d-none">
+          <div class="card-body text-center">
+            <h5 class="card-title">Operaciones Servicios</h5>
+            <p class="card-text">Elige una acción</p>
+            <a href="#" class="btn btn-success" onclick="showSection('create-servicio-form')">Crear Servicio</a>
+            <a href="#" class="btn btn-info" onclick="showSection('listar-servicios')">Listar Servicios</a>
+            <a href="#" class="btn btn-warning" onclick="showSection('editar-servicio')">Editar Servicio</a>
+            <a href="#" class="btn btn-danger" onclick="showSection('eliminar-servicio')">Eliminar Servicio</a>
+            <button class="btn btn-secondary" onclick="flipCard('servicios')">Volver</button>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta de Turnos -->
+    <div class="col-md-6 mb-4">
+      <div class="card card-flip turnos">
+        <div class="card-front">
+          <div class="card-body text-center">
+            <h5 class="card-title">Turnos</h5>
+            <p class="card-text">Gestiona tus turnos</p>
+            <button class="btn btn-primary" onclick="flipCard('turnos')">Ver más</button>
+          </div>
+        </div>
+        <div class="card-back d-none">
+          <div class="card-body text-center">
+            <h5 class="card-title">Operaciones Turnos</h5>
+            <p class="card-text">Elige una acción</p>
+            <a href="#" class="btn btn-success" onclick="showSection('create-turno-form')">Crear Turno</a>
+            <a href="#" class="btn btn-info" onclick="showSection('turno-list')">Listar Turnos</a>
+            <a href="#" class="btn btn-warning" onclick="showSection('update-turno-form')">Editar Turno</a>
+            <a href="#" class="btn btn-danger" onclick="showSection('delete-turno-form')">Eliminar Turno</a>
+            <button class="btn btn-secondary" onclick="flipCard('turnos')">Volver</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Formulario oculto de Sign Up -->
+<div id="signup-form" class="container mt-4 d-none">
+  <h2>Registro</h2>
+  <form>
+    <div class="mb-3">
+      <label for="username" class="form-label">Nombre de usuario</label>
+      <input type="text" class="form-control" id="username" placeholder="Ingresa tu nombre de usuario">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña">
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+  </form>
+</div>
+
+
+<!-- Formulario oculto de Login -->
+<div id="login-form" class="container mt-4 d-none">
+  <h2>Iniciar Sesión</h2>
+  <form>
+    <div class="mb-3">
+      <label for="login-username" class="form-label">Nombre de usuario</label>
+      <input type="text" class="form-control" id="login-username" placeholder="Ingresa tu nombre de usuario">
+    </div>
+    <div class="mb-3">
+      <label for="login-password" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="login-password" placeholder="Ingresa tu contraseña">
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+  </form>
+</div>
+
+
+<!-- Formulario oculto de Turnos -->
+<div id="turnos-form" class="container mt-4 d-none">
+  <h2 style="text-align: center;">Turnos</h2>
+
+  <!-- Celda para el formulario de crear un nuevo turno -->
+  <div class="border p-4 mb-4" style="border: 1px solid #ccc; border-radius: 5px;">
+    <form id="create-turno-form">
+      <h3>Crear Turno</h3>
+      <div class="mb-3">
+        <label for="turno-nombre" class="form-label">Nombre del Cliente</label>
+        <input type="text" class="form-control" id="turno-nombre" placeholder="Ingresa tu nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="turno-fecha" class="form-label">Fecha</label>
+        <input type="date" class="form-control" id="turno-fecha" required>
+      </div>
+      <div class="mb-3">
+        <label for="turno-hora" class="form-label">Hora</label>
+        <input type="time" class="form-control" id="turno-hora" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Turno</button>
+    </form>
+  </div>
+
+  <!-- Sección para listar turnos -->
+  <h3>Lista de Turnos</h3>
+  <ul id="turno-list" class="list-group"></ul>
+
+  <!-- Celda para el formulario de eliminar un turno -->
+  <div class="border p-4 mb-4" style="border: 1px solid #ccc; border-radius: 5px;">
+    <form id="delete-turno-form">
+      <h3>Eliminar Turno</h3>
+      <div class="mb-3">
+        <label for="turno-id-eliminar" class="form-label">ID del Turno a Eliminar</label>
+        <input type="number" class="form-control" id="turno-id-eliminar" placeholder="Ingresa el ID" required>
+      </div>
+      <div class="mb-3">
+        <label for="motivo-cancelacion" class="form-label">Motivo de Cancelación</label>
+        <input type="text" class="form-control" id="motivo-cancelacion" placeholder="Ingresa el motivo" required>
+      </div>
+      <button type="submit" class="btn btn-danger">Eliminar Turno</button>
+    </form>
+  </div>
+
+  <!-- Celda para el formulario de actualizar un turno -->
+  <div class="border p-4 mb-4" style="border: 1px solid #ccc; border-radius: 5px;">
+    <form id="update-turno-form">
+      <h3>Actualizar Turno</h3>
+      <div class="mb-3">
+        <label for="turno-id-actualizar" class="form-label">ID del Turno a Actualizar</label>
+        <input type="number" class="form-control" id="turno-id-actualizar" placeholder="Ingresa el ID" required>
+      </div>
+      <div class="mb-3">
+        <label for="turno-nombre-actualizar" class="form-label">Nombre del Cliente</label>
+        <input type="text" class="form-control" id="turno-nombre-actualizar" placeholder="Ingresa tu nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="turno-fecha-actualizar" class="form-label">Fecha</label>
+        <input type="date" class="form-control" id="turno-fecha-actualizar" required>
+      </div>
+      <div class="mb-3">
+        <label for="turno-hora-actualizar" class="form-label">Hora</label>
+        <input type="time" class="form-control" id="turno-hora-actualizar" required>
+      </div>
+      <button type="submit" class="btn btn-warning">Actualizar Turno</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- Formulario oculto de Servicios-->
+<div id="servicios-form" class="container mt-4 d-none">
+  <h2 style="text-align: center;">Servicios</h2>
+
+  <!-- Celda para el formulario de crear un nuevo servicio -->
+  <div class="border p-4 mb-4 rounded" style="border: 1px solid #000;">
+    <form id="create-servicio-form">
+      <h3>Crear Servicio</h3>
+      <div class="mb-3">
+        <label for="servicio-nombre" class="form-label">Nombre del Servicio</label>
+        <input type="text" class="form-control" id="servicio-nombre" placeholder="Ingresa el nombre del servicio" required>
+      </div>
+      <div class="mb-3">
+        <label for="servicio-costo" class="form-label">Costo</label>
+        <input type="number" class="form-control" id="servicio-costo" placeholder="Ingresa el costo" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Servicio</button>
+    </form>
+  </div>
+
+  <!-- Sección para listar servicios -->
+  <h3>Lista de Servicios en Promoción</h3>
+  <ul id="servicio-list" class="list-group"></ul>
+
+  <!-- Celda para el formulario de eliminar un servicio -->
+  <div class="border p-4 mb-4 rounded" style="border: 1px solid #000;">
+    <form id="delete-servicio-form">
+      <h3>Eliminar Servicio</h3>
+      <div class="mb-3">
+        <label for="servicio-id-eliminar" class="form-label">ID del Servicio a Eliminar</label>
+        <input type="number" class="form-control" id="servicio-id-eliminar" placeholder="Ingresa el ID" required>
+      </div>
+      <button type="submit" class="btn btn-danger">Eliminar Servicio</button>
+    </form>
+  </div>
+
+  <!-- Celda para el formulario de actualizar un servicio -->
+  <div class="border p-4 mb-4 rounded" style="border: 1px solid #000;">
+    <form id="update-servicio-form">
+      <h3>Actualizar Servicio</h3>
+      <div class="mb-3">
+        <label for="servicio-id-actualizar" class="form-label">ID del Servicio a Actualizar</label>
+        <input type="number" class="form-control" id="servicio-id-actualizar" placeholder="Ingresa el ID" required>
+      </div>
+      <div class="mb-3">
+        <label for="servicio-nombre-actualizar" class="form-label">Nombre del Servicio</label>
+        <input type="text" class="form-control" id="servicio-nombre-actualizar" placeholder="Ingresa el nuevo nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="servicio-costo-actualizar" class="form-label">Costo</label>
+        <input type="number" class="form-control" id="servicio-costo-actualizar" placeholder="Ingresa el nuevo costo" required>
+      </div>
+      <button type="submit" class="btn btn-warning">Actualizar Servicio</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- Formulario oculto de Comentarios -->
+<div id="comentarios-form" class="container mt-4 d-none">
+  <h2 style="text-align: center;">Formulario de Comentarios</h2>
+  <form>
+    <div class="mb-3">
+      <label for="comentario-nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="comentario-nombre" placeholder="Ingresa tu nombre">
+    </div>
+    <div class="mb-3">
+      <label for="comentario" class="form-label">Comentario</label>
+      <textarea class="form-control" id="comentario" rows="3" placeholder="Ingresa tu comentario"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+  </form>
+</div>
+
+
+<!-- Pie de Pagina -->
+<footer>
+  <div class="footer-content">
+    <h3>Foolish Developer</h3>
+    <p>Foolish Developer --- Source Code.</p>
+    <ul class="socials">
+      <li><a href="https://www.instagram.com/heyydoyouwannaeatpizzawithme" target="_blank"><i class="bi bi-instagram"></i></a></li>
+      <li><a href="https://github.com/tobiaszairusandivara" target="_blank"><i class="bi bi-github"></i></a></li>
+      <li><a href="#discord" target="_blank"><i class="bi bi-discord"></i></a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p>copyright &copy;2024 <a href="#">foolishdeveloper</a>  </p>
+ </div>
+</footer>
+
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<script src="/JS/script.js"></script>
+
+
+
+</body>
+</html>
